@@ -61,6 +61,40 @@ class LinkedList
     curr = curr.next while curr.next.next
     curr.next = nil
   end
+
+  def contains?(value)
+    curr = @head
+    loop do
+      return true if curr.value == value
+      break unless curr.next
+
+      curr = curr.next
+    end
+    false
+  end
+
+  def find(value)
+    curr = @head
+    index = 0
+    loop do
+      return index if curr.value == value
+      break unless curr.next
+
+      index += 1
+      curr = curr.next
+    end
+    nil
+  end
+
+  def to_s
+    curr = @head
+    string = ''
+    until curr.nil?
+      string += "( #{curr.value} ) -> "
+      curr = curr.next
+    end
+    "#{string}nil"
+  end
 end
 
 # Node for LinkedList class
@@ -98,3 +132,9 @@ puts list.at(4).value
 puts list.pop
 puts list.tail.value
 puts list.size
+puts list.contains?(102)
+puts list.find(102)
+puts list.append(169)
+puts list.find(169)
+
+puts list
